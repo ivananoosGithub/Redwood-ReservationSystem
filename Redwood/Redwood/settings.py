@@ -100,7 +100,7 @@ DATABASES = {
         'PASSWORD': 'Mada2xdane!',
         'HOST': 'db-redwoodciviccenter.postgres.database.azure.com',
         'PORT': '5432',
-        'OPTIONS': {"sslmode": "true"}
+        'OPTIONS': {"sslmode": "require"}
     }
 }
 
