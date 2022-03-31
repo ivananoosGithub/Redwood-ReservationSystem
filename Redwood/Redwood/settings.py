@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 STATIC_URL = '/static/'
 
+CSRF_TRUSTED_ORIGINS = ['https://group10-redwoodciviccenter.azurewebsites.net']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
