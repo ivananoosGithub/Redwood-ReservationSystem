@@ -45,7 +45,9 @@ INSTALLED_APPS = [
 
 STATIC_URL = '/static/'
 
-CSRF_TRUSTED_ORIGINS = ['https://group10-redwoodciviccenter.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = ['127.0.0.1',
+                        'group10-redwoodciviccenter.azurewebsites.net',
+                        'https://group10-redwoodciviccenter.azurewebsites.net/']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -98,7 +100,7 @@ DATABASES = {
         'PASSWORD': 'Mada2xdane!',
         'HOST': 'db-redwoodciviccenter.postgres.database.azure.com',
         'PORT': '5432',
-        'OPTIONS': {"sslmode": "require"},
+        'OPTIONS': {"sslmode": "true"}
     }
 }
 
