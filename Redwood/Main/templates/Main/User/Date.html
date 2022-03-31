@@ -36,7 +36,7 @@
   {% for room_type in room_types %}
   {% if current_room == room_type.room_type %}
   <!-- multistep form -->
-  <form  method="POST" id="multistepsform" autocomplete="off" action ="{% url 'Reservation' %}">
+  <form  method="POST" id="multistepsform" autocomplete="off">
     {% csrf_token %}
   <!-- progressbar -->
   <ul id="progressbar">
@@ -62,7 +62,7 @@
       {% endfor %}
     </select>
     <input type="button" name="previousDate" class="previous action-button" value="Previous" />
-    <button  id="btnReserve" type="submit" class="next action-button" >Next</button>
+    <button  id="btnReserve" type="submit" name="btnNext" class="next action-button" >Next</button>
   </fieldset>
 </form>
 </body>

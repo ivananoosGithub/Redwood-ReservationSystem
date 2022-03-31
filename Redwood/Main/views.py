@@ -80,7 +80,9 @@ def date(request):
                'room_type_in_rooms': room_type_in_rooms, 'current_room': current_room}
 
     if request.method == "POST":
-        if 'previousDate' in request.POST:
+        if 'btnNext' in request.POST:
+            return render(request, "Main/User/Reservation.html", context)
+        elif 'previousDate' in request.POST:
             return redirect(applicant)
         else:
             return HttpResponse('You are in the wrong page')
