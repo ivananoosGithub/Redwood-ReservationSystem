@@ -27,47 +27,47 @@ def contact(response):
 # User choose room page
 
 
-def rooms(response):
+def rooms(request):
     room_types = Room_Type.objects.all()
     context = {"room_types": room_types}
 
-    if response.method == "POST":
-        if 'btnReserve' in response.POST:
+    if request.method == "POST":
+        if 'btnReserve' in request.POST:
             # Get the choice of room type ( A, B, C, D)
-            current_room_type = response.POST.get("room_type")
+            current_room_type = request.POST.get("room_type")
             # Put it into session
-            response.session['room_type'] = current_room_type
-            print(response.session['room_type'])
+            request.session['room_type'] = current_room_type
+            print(request.session['room_type'])
             return redirect(applicant)
         else:
             return HttpResponse('You are in the wrong page')
 
-    return render(response, "Main/User/Rooms.html", context)
+    return render(request, "Main/User/Rooms.html", context)
 
 
 # User fill up form 1 ( User/Applicant Details )
-def applicant(response):
+def applicant(request):
 
     applicants = Applicant.objects.all()
-    current_room = response.session['room_type']
+    current_room = request.session['room_type']
     context = {'applicants': applicants, 'current_room': current_room}
 
     # After filling up, the applicant details will be save into the database.
-    if 'btnAddApplicant' in response.POST:
-        if response.POST.get('name') and response.POST.get('address') and response.POST.get('phone') and response.POST.get('email'):
+    if 'btnAddApplicant' in request.POST:
+        if request.POST.get('name') and request.POST.get('address') and request.POST.get('phone') and request.POST.get('email'):
             add_applicant = Applicant()
-            add_applicant.applicant_name = response.POST.get(
+            add_applicant.applicant_name = request.POST.get(
                 'name')
-            add_applicant.applicant_address = response.POST.get(
+            add_applicant.applicant_address = request.POST.get(
                 'address')
-            add_applicant.applicant_contactNo = response.POST.get(
+            add_applicant.applicant_contactNo = request.POST.get(
                 'phone')
-            add_applicant.applicant_email = response.POST.get(
+            add_applicant.applicant_email = request.POST.get(
                 'email')
             add_applicant.save()
             print('Successfully Added an applicant')
             return redirect(date)
-    return render(response, "Main/User/Applicant.html", context)
+    return render(request, "Main/User/Applicant.html", context)
 
 # User fill up form 2 ( User/Applicant choose date and room)
 
