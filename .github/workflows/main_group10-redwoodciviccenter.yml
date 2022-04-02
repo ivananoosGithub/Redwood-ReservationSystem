@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'group10-redwoodciviccenter'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A725BA8885274677B42C0CBCFEB99D85 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F5C57CA1469C40838E8CA80952CFC05E }}
