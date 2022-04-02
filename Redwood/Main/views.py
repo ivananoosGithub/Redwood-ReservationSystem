@@ -102,7 +102,7 @@ def reservation(request):
     user_chosen_room = request.GET['room']
     user_chosen_date = request.GET['date']
 
-    reservation = RoomLedger.objects.raw('SELECT room_ledger_id, date_of_use, room_number, room_type, morning, afternoon, evening FROM main_roomledger WHERE date_of_use = %s AND room_number = %s AND room_type = %s', [
+    reservation = RoomLedger.objects.raw('SELECT room_ledger_id, date_of_use, room_number, room_type, morning, afternoon, evening FROM "main_roomledger" WHERE date_of_use = %s AND room_number = %s AND room_type = %s', [
                                          user_chosen_date, user_chosen_room, current_room])
 
     # If the chosen date and room number is not in the database, then it will automatically added in the database
@@ -116,7 +116,7 @@ def reservation(request):
         add_Ledger.evening = 0
         add_Ledger.save()
 
-    reservation = RoomLedger.objects.raw('SELECT room_ledger_id, date_of_use, room_number, room_type, morning, afternoon, evening FROM main_roomledger WHERE date_of_use = %s AND room_number = %s AND room_type = %s', [
+    reservation = RoomLedger.objects.raw('SELECT room_ledger_id, date_of_use, room_number, room_type, morning, afternoon, evening FROM "main_roomledger" WHERE date_of_use = %s AND room_number = %s AND room_type = %s', [
         user_chosen_date, user_chosen_room, current_room])
 
     # Submit the reservation form
@@ -136,7 +136,7 @@ def reservation(request):
             print('Successfully Added an RESERVATION!!!!!!!!!!!!!!!!!!!!!!!')
 
             room_types = Room_Type.objects.raw(
-                'SELECT room_type, morning, afternoon, evening FROM main_room_type WHERE room_type = %s', [current_room])
+                'SELECT room_type, morning, afternoon, evening FROM "main_room_type" WHERE room_type = %s', [current_room])
 
             for room_type in room_types:
                 print(room_type.morning)
@@ -222,10 +222,10 @@ def crud_reservation(response):
 
     reservations = Reservation.objects.all()
     sql_reservations = Reservation.objects.raw(
-        'SELECT reservation_number, room_number_id AS MostBookedRoom, COUNT(room_number_id) as TotalOfReservation FROM main_reservation GROUP BY room_number_id ORDER BY TotalOfReservation DESC LIMIT 1')
+        'SELECT reservation_number, room_number_id AS MostBookedRoom, COUNT(room_number_id) as TotalOfReservation FROM "main_reservation" GROUP BY room_number_id ORDER BY TotalOfReservation DESC LIMIT 1')
 
     sql_days = Reservation.objects.raw(
-        'SELECT reservation_number, scheduled_date_of_use AS DateOfUse, COUNT(room_number_id) AS NumberOfReservation FROM main_reservation GROUP BY scheduled_date_of_use')
+        'SELECT reservation_number, scheduled_date_of_use AS DateOfUse, COUNT(room_number_id) AS NumberOfReservation FROM "main_reservation" GROUP BY scheduled_date_of_use')
 
     context = {"reservations": reservations,
                "sql_reservations": sql_reservations, "sql_days": sql_days}
@@ -265,7 +265,7 @@ def crud_room_ledger(response):
 
     room_ledgers = RoomLedger.objects.all()
     sql_ledgers = RoomLedger.objects.raw(
-        'SELECT room_ledger_id, date_of_use, room_number, morning, afternoon, evening FROM RoomLedger WHERE morning = 0 OR afternoon = 0 OR evening = 0')
+        'SELECT room_ledger_id, date_of_use, room_number, morning, afternoon, evening FROM "main_roomledger" WHERE morning = 0 OR afternoon = 0 OR evening = 0')
     context = {"room_ledgers": room_ledgers, "sql_ledgers": sql_ledgers}
 
     if response.method == "POST":
