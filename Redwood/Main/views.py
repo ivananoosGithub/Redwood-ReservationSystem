@@ -265,7 +265,7 @@ def crud_room_ledger(response):
 
     room_ledgers = RoomLedger.objects.all()
     sql_ledgers = RoomLedger.objects.raw(
-        'SELECT room_ledger_id, date_of_use, room_number, morning, afternoon, evening FROM main_roomledger WHERE morning = 0 OR afternoon = 0 OR evening = 0')
+        'SELECT room_ledger_id, date_of_use, room_number, morning, afternoon, evening FROM RoomLedger WHERE morning = 0 OR afternoon = 0 OR evening = 0')
     context = {"room_ledgers": room_ledgers, "sql_ledgers": sql_ledgers}
 
     if response.method == "POST":
