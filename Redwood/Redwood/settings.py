@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'Redwood.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'redwood-db',
-        'USER': 'ivankimanoos@db-redwoodciviccenter',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'database-redwoodciviccenter',
+        'USER': 'ivananoos123@db-redwood',
         'PASSWORD': 'Mada2xdane!',
-        'HOST': 'db-redwoodciviccenter.postgres.database.azure.com',
+        'HOST': 'db-redwood.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {"sslmode": "require"},
     }

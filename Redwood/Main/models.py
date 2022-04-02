@@ -64,3 +64,6 @@ class RoomLedger(models.Model):
     morning = models.IntegerField()
     afternoon = models.IntegerField()
     evening = models.IntegerField()
+
+    class meta:
+        db_table = 'tblroomledger'
