@@ -80,9 +80,7 @@ def date(request):
                'room_type_in_rooms': room_type_in_rooms, 'current_room': current_room}
 
     if request.method == "POST":
-        if 'btnNext' in request.POST:
-            return render(request, "Main/User/Reservation.html", context)
-        elif 'previousDate' in request.POST:
+        if 'previousDate' in request.POST:
             return redirect(applicant)
         else:
             return HttpResponse('You are in the wrong page')
@@ -103,7 +101,7 @@ def reservation(request):
     user_chosen_date = request.GET['date']
 
     reservation = RoomLedger.objects.raw('SELECT room_ledger_id, date_of_use, room_number, room_type, morning, afternoon, evening FROM "Main_roomledger" WHERE date_of_use = %s AND room_number = %s AND room_type = %s', [
-                                         user_chosen_date, user_chosen_room, current_room])
+        user_chosen_date, user_chosen_room, current_room])
 
     # If the chosen date and room number is not in the database, then it will automatically added in the database
     if not reservation:
@@ -115,9 +113,6 @@ def reservation(request):
         add_Ledger.afternoon = 0
         add_Ledger.evening = 0
         add_Ledger.save()
-
-    reservation = RoomLedger.objects.raw('SELECT room_ledger_id, date_of_use, room_number, room_type, morning, afternoon, evening FROM "Main_roomledger" WHERE date_of_use = %s AND room_number = %s AND room_type = %s', [
-        user_chosen_date, user_chosen_room, current_room])
 
     # Submit the reservation form
     if 'btnSubmit' in request.POST:
