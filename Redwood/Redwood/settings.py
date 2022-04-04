@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'db-redwood',
         'USER': 'ivananoos123@database-redwoodciviccenter',
         'PASSWORD': 'Mada2xdane!',
-        'HOST': 'ddatabase-redwoodciviccenter.postgres.database.azure.com',
+        'HOST': 'database-redwoodciviccenter.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {"sslmode": "require"},
     }
