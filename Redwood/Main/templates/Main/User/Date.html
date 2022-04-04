@@ -36,7 +36,7 @@
   {% for room_type in room_types %}
   {% if current_room == room_type.room_type %}
   <!-- multistep form -->
-  <form  method="POST" id="multistepsform" autocomplete="off" action ="{% url 'Reservation' %}">
+  <form id="multistepsform" autocomplete="off" action ="{% url 'Reservation' %}">
     {% csrf_token %}
   <!-- progressbar -->
   <ul id="progressbar">

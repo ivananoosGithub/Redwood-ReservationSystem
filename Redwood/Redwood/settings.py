@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f+ni$rwaa@v2ah$fh7l1ra87-!%f#r&h^kr$t50$@ac5rl^-4y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'group10-redwoodciviccenter.azurewebsites.net',
@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'Redwood.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'database-redwoodciviccenter',
-        'USER': 'ivananoos123@db-redwood',
+        'NAME': 'db-redwood',
+        'USER': 'ivananoos123@database-redwoodciviccenter',
         'PASSWORD': 'Mada2xdane!',
-        'HOST': 'db-redwood.postgres.database.azure.com',
+        'HOST': 'ddatabase-redwoodciviccenter.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {"sslmode": "require"},
     }

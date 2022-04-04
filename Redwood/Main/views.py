@@ -216,14 +216,14 @@ def crud_applicants(response):
 def crud_reservation(response):
 
     reservations = Reservation.objects.all()
-    sql_reservations = Reservation.objects.raw(
-        'SELECT reservation_number, room_number_id AS MostBookedRoom, COUNT(room_number_id) as TotalOfReservation FROM "Main_reservation" GROUP BY room_number_id ORDER BY TotalOfReservation DESC LIMIT 1')
+    # sql_reservations = Reservation.objects.raw(
+    #     'SELECT DISTINCT ON reservation_number, room_number_id AS MostBookedRoom, COUNT(room_number_id) as TotalOfReservation FROM "Main_reservation" GROUP BY room_number_id ORDER BY TotalOfReservation DESC LIMIT 1')
 
-    sql_days = Reservation.objects.raw(
-        'SELECT reservation_number, scheduled_date_of_use AS DateOfUse, COUNT(room_number_id) AS NumberOfReservation FROM "Main_reservation" GROUP BY scheduled_date_of_use')
+    # sql_days = Reservation.objects.raw(
+    #     'SELECT DISTINCT ON reservation_number, scheduled_date_of_use AS DateOfUse, COUNT(room_number_id) AS NumberOfReservation FROM "Main_reservation" GROUP BY scheduled_date_of_use')
 
-    context = {"reservations": reservations,
-               "sql_reservations": sql_reservations, "sql_days": sql_days}
+    context = {"reservations": reservations}
+    #    "sql_reservations": sql_reservations, "sql_days": sql_days}
 
     if response.method == "POST":
         if 'btnUpdate' in response.POST:
